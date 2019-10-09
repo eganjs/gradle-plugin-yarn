@@ -2,9 +2,7 @@
 
 ## Mission Statement
 
-This is intended to be an opinionated plugin aimed at delivering a zero configuration experience.
-
-The idea is to provide a plugin that just orchestrates and keeps out of your way as much as possible.
+The idea is to provide a minimum viable plugin for orchestrating yarn.
 
 ## Requirements
 

@@ -1,9 +1,15 @@
+import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
+
 plugins {
     `java-gradle-plugin`
+    id("com.gradle.plugin-publish") version "0.10.0"
     `kotlin-dsl`
     kotlin("jvm") version "1.3.41"
     id("com.diffplug.gradle.spotless") version "3.24.3"
 }
+
+group = "io.eganjs"
+version = "1.0.0"
 
 repositories {
     jcenter()
@@ -22,8 +28,16 @@ gradlePlugin {
     @Suppress("UNUSED_VARIABLE")
     val yarn by plugins.creating {
         id = "io.eganjs.yarn"
+        displayName = "Yarn plugin"
+        description = "Minimum viable plugin for orchestrating yarn from gradle"
         implementationClass = "io.eganjs.gradle.plugin.yarn.YarnPlugin"
     }
+}
+
+pluginBundle {
+    website =  "https://github.com/eganjs/gradle-plugin-yarn"
+    vcsUrl = "https://github.com/eganjs/gradle-plugin-yarn"
+    tags = listOf("yarn", "nodejs", "orchestration")
 }
 
 val functionalTestSourceSet = sourceSets.create("functionalTest") {

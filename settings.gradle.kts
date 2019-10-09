@@ -1,1 +1,1 @@
-rootProject.name = "yarn"
+rootProject.name = "gradle-plugin-yarn"
