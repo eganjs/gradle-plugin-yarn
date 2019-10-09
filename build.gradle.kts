@@ -1,10 +1,9 @@
 plugins {
     `java-gradle-plugin`
-    id("org.jetbrains.kotlin.jvm") version "1.3.50"
+    `kotlin-dsl`
+    kotlin("jvm") version "1.3.41"
     id("com.diffplug.gradle.spotless") version "3.24.3"
 }
-
-com.diffplug.gradle.spotless.SpotlessPlugin
 
 repositories {
     jcenter()
@@ -13,7 +12,6 @@ repositories {
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("com.jayway.jsonpath:json-path:2.4.0")
 
     testImplementation("org.jetbrains.kotlin:kotlin-test")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
@@ -21,7 +19,8 @@ dependencies {
 }
 
 gradlePlugin {
-    val greeting by plugins.creating {
+    @Suppress("UNUSED_VARIABLE")
+    val yarn by plugins.creating {
         id = "io.eganjs.yarn"
         implementationClass = "io.eganjs.gradle.plugin.yarn.YarnPlugin"
     }
@@ -45,4 +44,10 @@ val check by tasks.getting(Task::class) {
 spotless {
     kotlin { ktlint() }
     kotlinGradle { ktlint() }
+    format("misc") {
+        target("README.md", ".gitignore")
+        trimTrailingWhitespace()
+        indentWithSpaces()
+        endWithNewline()
+    }
 }
