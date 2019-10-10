@@ -1,5 +1,3 @@
-import org.jetbrains.kotlin.gradle.targets.js.yarn.yarn
-
 plugins {
     `java-gradle-plugin`
     id("com.gradle.plugin-publish") version "0.10.0"
