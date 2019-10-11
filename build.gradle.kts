@@ -33,7 +33,7 @@ gradlePlugin {
 }
 
 pluginBundle {
-    website =  "https://github.com/eganjs/gradle-plugin-yarn"
+    website = "https://github.com/eganjs/gradle-plugin-yarn"
     vcsUrl = "https://github.com/eganjs/gradle-plugin-yarn"
     tags = listOf("yarn", "nodejs", "orchestration")
 }
