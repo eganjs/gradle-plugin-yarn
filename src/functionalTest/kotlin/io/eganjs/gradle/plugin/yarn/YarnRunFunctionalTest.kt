@@ -114,4 +114,43 @@ class YarnRunFunctionalTest {
         val outputLines = result.output.lines()
         assertThat(outputLines).contains("$ echo running test")
     }
+
+    @Test
+    fun `when yarnRunClean yarnRunBuildProd is run after yarnInstall then the clean and build scripts from the package json are run`() {
+        // Setup the test build
+        val projectDir = testProjectDir.setupProject().apply {
+            resolve("package.json").writeText("""
+                {
+                  "scripts": {
+                    "clean": "rimraf node_modules dist",
+                    "build:prod": "mkdirp dist"
+                  },
+                  "devDependencies": {
+                    "rimraf": "3.0.0",
+                    "mkdirp": "0.5.1"
+                  }
+                }
+            """)
+        }
+
+        // Run the build
+        GradleRunner.create().apply {
+            forwardOutput()
+            withPluginClasspath()
+            withArguments("yarnInstall")
+            withProjectDir(projectDir)
+        }.build()
+
+        val result = GradleRunner.create().apply {
+            forwardOutput()
+            withPluginClasspath()
+            withArguments("yarnRunClean", "yarnRunBuildProd")
+            withProjectDir(projectDir)
+        }.build()
+
+        // Verify the result
+        val outputLines = result.output.lines()
+        assertThat(outputLines).contains("$ rimraf node_modules dist")
+        assertThat(outputLines).contains("$ mkdirp dist")
+    }
 }
