@@ -16,6 +16,6 @@ The following scripts should be defined in your `package.json`:
 
 ## Task Graph
 
-Visualisation of the tasks the plugin creates and how it hooks in to existing tasks
+Below is a visualisation of the tasks that the plugin creates and hooks in to:
 
 ![task graph](documentation/task-graph.png)
