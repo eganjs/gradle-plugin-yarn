@@ -13,3 +13,9 @@ The following scripts should be defined in your `package.json`:
 - `build:prod` - links to the `assemble` task
 - `lint` - links to the `check` task
 - `test` - links to the `check` task
+
+## Task Graph
+
+Below is a visualisation of the tasks that the plugin creates and hooks in to:
+
+![task graph](documentation/task-graph.png)
