@@ -19,13 +19,21 @@ class YarnPlugin : Plugin<Project> {
                 commandLine("yarn", "install")
             }
 
+            // Register separate install task for clean to prevent (https://github.com/eganjs/gradle-plugin-yarn/issues/3)
+
+            val yarnCInstall by registering(Exec::class) {
+                description = "Installs all dependencies for a project (specifically for yarnRunClean)"
+                group = "yarn"
+                commandLine("yarn", "install")
+            }
+
             // Register package script tasks
 
             val yarnRunClean by registering(Exec::class) {
                 description = "Runs the `clean` package script"
                 group = "yarn"
                 commandLine("yarn", "run", "clean")
-                dependsOn(yarnInstall)
+                dependsOn(yarnCInstall)
             }
 
             val yarnRunBuildProd by registering(Exec::class) {
