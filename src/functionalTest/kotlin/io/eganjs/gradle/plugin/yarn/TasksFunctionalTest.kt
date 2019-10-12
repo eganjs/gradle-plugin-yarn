@@ -28,6 +28,7 @@ class TasksFunctionalTest {
         val outputLines = result.output.lines().filter { it.startsWith("yarn") }
         assertThat(outputLines).containsExactlyInAnyOrder(
                 "yarnInstall - Installs all dependencies for a project",
+                "yarnCInstall - Installs all dependencies for a project (specifically for yarnRunClean)",
                 "yarnRunBuildProd - Runs the `build:prod` package script",
                 "yarnRunClean - Runs the `clean` package script",
                 "yarnRunLint - Runs the `lint` package script",
