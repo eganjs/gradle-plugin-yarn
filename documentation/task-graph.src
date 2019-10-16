@@ -1,0 +1,10 @@
+yarnCInstall->yarnRunClean
+yarnInstall->yarnRunBuildProd
+yarnInstall->yarnRunLint
+yarnInstall->yarnRunTest
+yarnRunClean->clean
+yarnRunBuildProd->assemble
+yarnRunLint->check
+yarnRunTest->check
+check->build
+assemble->build
